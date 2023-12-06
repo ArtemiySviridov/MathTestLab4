@@ -1,0 +1,66 @@
+﻿<Window x:Class="MathTestLab4.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MathTestLab4"
+        mc:Ignorable="d"
+        Title="Математический тест" Height="450" Width="800">
+
+    <Window.Resources>
+        <Style x:Key="RadioButtonAnswers" TargetType="RadioButton">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0,0,0,10"/>
+        </Style>
+    </Window.Resources>
+    
+        <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="0.2*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="0.5*"/>
+            </Grid.RowDefinitions>
+
+            <Border Grid.Row="0" Background="LightBlue" BorderBrush="Black" BorderThickness="1" Margin="5,5,5,10" CornerRadius="5">
+                <Grid Margin="10">
+                    <Border Background="LightCyan" BorderBrush="Black" BorderThickness="1" Margin="20,10,600,160" CornerRadius="10">
+                        <TextBlock  Margin="5"/>
+                    </Border>
+
+                    <Border Background="LightCyan" Margin="30,55,30,30" BorderBrush="Black" BorderThickness="1" CornerRadius="10">
+                        <TextBlock Text="{Binding CurrentQ.Text}" Margin="20"/> 
+                    </Border>
+                </Grid>
+            </Border>
+
+            <Border Grid.Row="1" HorizontalAlignment="Center" Background="LightBlue" BorderBrush="Black" BorderThickness="1" CornerRadius="5">
+                <StackPanel HorizontalAlignment="Center">
+                    <Label FontWeight="Bold" HorizontalAlignment="Center">Выберите правильный вариант ответа:</Label>
+                    <RadioButton Content="{Binding CurrentQ.Answers[0]}" Style="{StaticResource RadioButtonAnswers}"/>
+                    <RadioButton Content="{Binding CurrentQ.Answers[1]}"  Style="{StaticResource RadioButtonAnswers}"/>
+                    <RadioButton Content="{Binding CurrentQ.Answers[2]}" Style="{StaticResource RadioButtonAnswers}"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Content="Назад" Margin="10"/>
+            <Button Grid.Column="1" Content="Завершить тест" Margin="10"/>
+            <Button Grid.Column="2" Content="Вперед" Margin="10" Command="{Binding GoToNextQuestionCommand}"/>
+        </Grid>
+
+
+
+    </Grid>
+</Window>
